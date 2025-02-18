@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from sqlalchemy import Engine
-from typing import Self, Type
+from typing import Self
 
 class IDBConnectionHandler(ABC):
 
@@ -8,7 +8,7 @@ class IDBConnectionHandler(ABC):
     def _create_database_engine(self) -> None:pass
 
     @abstractmethod
-    def get_engine(self) -> Type[Engine]:pass
+    def get_engine(self) -> Engine:pass
 
     @abstractmethod
     def __enter__(self) -> Self:pass
