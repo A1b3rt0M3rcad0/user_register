@@ -1,5 +1,5 @@
 from src.infra.db.connection.interface.i_db_connection_handler import IDBConnectionHandler
-from src.infra.db.config.dabase_connection.interface.i_string_connection import IStringConnection
+from src.infra.db.config.database_connection.interface.i_string_connection import IStringConnection
 from typing import Self
 from sqlalchemy import Engine
 from sqlalchemy import create_engine

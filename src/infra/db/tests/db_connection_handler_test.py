@@ -1,7 +1,7 @@
 import pytest
 from sqlalchemy import text
 from src.infra.db.connection.factory.db_connection_handler_factory import DBConnectionHandlerFactory
-from src.infra.db.config.dabase_connection.connection.mysql_string_connection import MysqlStringConnection
+from src.infra.db.config.database_connection.connection.mysql_string_connection import MysqlStringConnection
 
 @pytest.mark.skip('Sensitive Test')
 def test_mysql_connection():

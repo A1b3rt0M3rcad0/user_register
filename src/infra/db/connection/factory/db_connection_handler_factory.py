@@ -1,4 +1,4 @@
-from src.infra.db.config.dabase_connection.interface.i_string_connection import IStringConnection
+from src.infra.db.config.database_connection.interface.i_string_connection import IStringConnection
 from src.infra.db.connection.connection_handler.db_connection_handler import DBConnectionHandler
 
 class DBConnectionHandlerFactory:
