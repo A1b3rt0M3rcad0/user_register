@@ -10,10 +10,10 @@ class DBConnectionHandler(IDBConnectionHandler):
 
     def __init__(self, string_connection:IStringConnection) -> None:
         self.__string_connection = string_connection.get_string_connection()
-        self.__engine = self._create_engine()
+        self.__engine = self._create_database_engine()
         self.session = None
 
-    def _create_engine(self) -> Engine:
+    def _create_database_engine(self) -> Engine:
         return create_engine(self.__string_connection)
 
     def get_engine(self) -> Engine:
