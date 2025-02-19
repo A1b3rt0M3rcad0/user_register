@@ -1,0 +1,7 @@
+from abc import ABC, abstractmethod
+from src.domain.dtos.delete_user_dto import DeleteUserDTO
+
+class DeleteUser(ABC):
+
+    @abstractmethod
+    def delete(self, username:str) -> DeleteUserDTO:pass
