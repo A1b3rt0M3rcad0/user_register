@@ -11,4 +11,4 @@ class UsernameValidator(IUsernameValidator):
         if not username:
             raise BadRequestError('The username is empty')
         if len(username) <= length:
-            raise BadRequestError('The username length is less than or equal to {length}')
+            raise BadRequestError(f'The username length is less than or equal to {length}')
