@@ -1,9 +1,10 @@
 from sqlalchemy import text
 from sqlalchemy import Engine
 from src.domain.models.users import Users
+from typing import List
 
 
-def select_user(engine:Engine) -> Users:
+def select_user(engine:Engine) -> List[Users]:
     sql = '''
     SELECT * FROM users
     '''

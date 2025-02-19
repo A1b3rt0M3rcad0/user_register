@@ -38,3 +38,19 @@ def test_select_user_repository() -> None:
     assert user.username == mocked_username
     assert user.password == mocked_password
     assert user.created_at == mocked_created_at
+
+@set_up
+def test_delete_user_repository() -> None:
+
+    mocked_username = 'username'
+    mocked_password = 'password'
+    mocked_created_at = datetime.now(timezone.utc)
+
+    user_repository = UsersRepository(TestStringConnection)
+    engine = user_repository.get_db_connection_handler().get_engine()
+    insert_user(mocked_username, mocked_password, mocked_created_at, engine)
+    users = select_user(engine)
+    assert users
+    user_repository.delete(mocked_username)
+    users = select_user(engine)
+    assert not users
