@@ -3,7 +3,7 @@ from src.domain.models.users import Users
 from typing import Dict
 from src.infra.db.connection.connection_handler.db_connection_handler import DBConnectionHandler
 
-class IUsersInterface(ABC):
+class IUsersRepository(ABC):
 
     @abstractmethod
     def get_db_connection_handler(self) -> DBConnectionHandler:pass

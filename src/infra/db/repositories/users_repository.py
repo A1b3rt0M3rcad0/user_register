@@ -1,3 +1,4 @@
+from src.data.interfaces.i_users_repository import IUsersRepository
 from src.infra.db.config.database_connection.interface.i_string_connection import IStringConnection
 from src.infra.db.connection.factory.db_connection_handler_factory import DBConnectionHandlerFactory
 from src.infra.db.connection.connection_handler.db_connection_handler import DBConnectionHandler
@@ -5,7 +6,7 @@ from src.infra.db.entities.users import Users as UsersEntity
 from src.domain.models.users import Users
 from typing import Dict, List
 
-class UsersRepository:
+class UsersRepository(IUsersRepository):
 
     def __init__(self, string_connection:IStringConnection) -> None:
         self.__db_connection_handler = DBConnectionHandlerFactory.create_connection(string_connection)
