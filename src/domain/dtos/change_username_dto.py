@@ -1,11 +1,11 @@
 from src.domain.dtos.interfaces.i_dto import IDTO
 from typing import Dict
 
-class UpdateUserDTO(IDTO):
+class ChangeUsernameDTO(IDTO):
 
-    def __init__(self, username:str, update_params:Dict) -> None:
+    def __init__(self, username:str, new_username:str) -> None:
         self.__username = username
-        self.__update_params = update_params
+        self.__new_username = new_username
     
     def to_dict(self) -> Dict:
         return {
@@ -13,5 +13,5 @@ class UpdateUserDTO(IDTO):
             'attrs': {
                 'username': self.__username,
             },
-            'update_params': self.__update_params
+            'new_username': self.__new_username
         }
