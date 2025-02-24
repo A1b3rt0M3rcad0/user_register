@@ -4,4 +4,4 @@ from typing import Dict
 class IDecoder(ABC):
 
     @abstractmethod
-    def encode(self, token:str) -> Dict:pass
+    def decode(self, token:str) -> Dict:pass
