@@ -1,0 +1,3 @@
+from src.infra.db.config.database_connection.connection.mysql_string_connection import MysqlStringConnection
+
+DatabaseStringConnection = MysqlStringConnection
