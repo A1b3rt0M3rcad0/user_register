@@ -11,4 +11,5 @@ class Encoder(IEncoder):
         self.__secret_key = secret_key.get_sercret_key()
     
     def encode(self, params:Dict) -> str:
-        jwt.encode(payload=params, key=self.__secret_key, algorithm=self.__auth_algoritm)
+        token = jwt.encode(payload=params, key=self.__secret_key, algorithm=self.__auth_algoritm)
+        return token
