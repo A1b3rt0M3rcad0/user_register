@@ -1,10 +1,12 @@
-from src.presentation.http_types.http_response import HttpReponse
+from src.presentation.http_types.http_response import HttpResponse
 from src.errors.types.http_bad_request_error import BadRequestError
+from src.errors.types.http_unauthorized_error import UnauthorizedError
+from src.errors.types.http_unprocessable_entity_error import HttpUnprocessableEntityError
 
-def error_handler(error: Exception) -> HttpReponse:
+def error_handler(error: Exception) -> HttpResponse:
 
-    if isinstance(error, (BadRequestError)):
-        return HttpReponse(
+    if isinstance(error, (BadRequestError, UnauthorizedError, HttpUnprocessableEntityError)):
+        return HttpResponse(
             status_code=error.status_code,
             body={
                 "errors": [{
@@ -13,7 +15,7 @@ def error_handler(error: Exception) -> HttpReponse:
                 }]
             }
         )
-    return HttpReponse(
+    return HttpResponse(
         status_code=500,
         body = {
             "errors": [{
