@@ -4,7 +4,15 @@ from src.infra.db.config.database_connection.connection.test_string_connection i
 from src.infra.db.tests.utils.clear_database import set_up
 from src.infra.db.tests.utils.select_user import select_user
 from src.errors.types.http_bad_request_error import BadRequestError
+from src.domain.security.hash.i_password_hashing import IPasswordHashing
 
+
+class PasswordHashingTest(IPasswordHashing):
+
+    @staticmethod
+    def hash(password:str) -> str:
+        return password
+    
 @set_up
 def test_create_user() -> None:
     mocked_username = 'username'
@@ -14,7 +22,7 @@ def test_create_user() -> None:
     user_repository = UsersRepository(test_string_connection)
     db_connection_handler = user_repository.get_db_connection_handler()
     engine = db_connection_handler.get_engine()
-    create_user = CreateUser(user_repository)
+    create_user = CreateUser(user_repository, PasswordHashingTest)
 
     create_user.create(mocked_username, mocked_password)
 
@@ -33,7 +41,7 @@ def test_create_user_username_validator() -> None:
 
     test_string_connection = TestStringConnection()
     user_repository = UsersRepository(test_string_connection)
-    create_user = CreateUser(user_repository)
+    create_user = CreateUser(user_repository, PasswordHashingTest)
 
     try:
         create_user.create(mocked_username_less_equal, mocked_password)
@@ -58,7 +66,7 @@ def test_create_user_password_validator() -> None:
 
     test_string_connection = TestStringConnection()
     user_repository = UsersRepository(test_string_connection)
-    create_user = CreateUser(user_repository)
+    create_user = CreateUser(user_repository, PasswordHashingTest)
 
     try:
         create_user.create(mocked_username, mocked_password_less_equal)
@@ -80,7 +88,7 @@ def test_create_user_response() -> None:
 
     test_string_connection = TestStringConnection()
     user_repository = UsersRepository(test_string_connection)
-    create_user = CreateUser(user_repository)
+    create_user = CreateUser(user_repository, PasswordHashingTest)
 
     response = create_user.create(mocked_username, mocked_password)
     response_dict = response.to_dict()
