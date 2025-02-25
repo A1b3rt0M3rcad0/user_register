@@ -5,4 +5,4 @@ class MysqlStringConnection(IStringConnection):
 
     @staticmethod
     def get_string_connection() -> str:
-        return os.getenv('mysql_string_connection')
+        return os.getenv('MYSQL_STRING_CONNECTION')
