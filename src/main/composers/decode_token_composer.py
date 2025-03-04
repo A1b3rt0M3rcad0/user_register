@@ -5,10 +5,10 @@ from src.presentation.http_types.http_request import HttpRequest
 from src.presentation.http_types.http_response import HttpResponse
 from typing import Callable
 from src.data.use_cases.decode_token import DecodeToken
-from src.presentation.controllers.delete_user_controller import DeleteUserController
+from src.presentation.controllers.decode_token_controller import DecodeTokenController
 
 def decode_token_composer() -> Callable[[HttpRequest], HttpResponse]:
     decoder = Decoder(AuthAlgoritm, SecretKey)
     decode_token = DecodeToken(decoder)
-    delete_user_controller = DeleteUserController(decode_token)
-    return delete_user_controller.handle
+    decode_token_controller = DecodeTokenController(decode_token)
+    return decode_token_controller.handle

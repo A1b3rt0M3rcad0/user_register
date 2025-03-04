@@ -11,6 +11,7 @@ from src.main.composers.create_user_composer import create_user_composer
 from src.main.composers.delete_user_composer import delete_user_composer
 from src.main.composers.login_case_composer import login_case_composer
 from src.main.composers.select_composer import select_user_composer
+from src.main.composers.decode_token_composer import decode_token_composer
 
 # Import Validators
 from src.validators.request_validators.create_user_validator_request import create_user_validator
@@ -45,3 +46,13 @@ def login_user() -> any:
         http_response = error_handler(e)
     
     return jsonify(http_response.body), http_response.status_code
+
+@user_routes_bp.route("/user/change_username", methods=["POST"])
+@require_authentication
+def change_username() -> any:
+    try:
+        http_response = request_adapter(request, change_username_composer())
+        return jsonify(http_response.body), http_response.status_code
+    except Exception as e:
+        http_response = error_handler(e)
+        return jsonify(http_response.body), http_response.status_code

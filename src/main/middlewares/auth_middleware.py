@@ -18,6 +18,6 @@ def require_authentication(f):
         if auth_result.status_code != 200:
             return jsonify(auth_result.body), auth_result.status_code
         
-        return f(token=token, *args, **kwargs)
+        return f(*args, **kwargs)
     
     return decorated_function

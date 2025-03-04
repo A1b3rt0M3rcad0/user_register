@@ -10,7 +10,7 @@ class DecodeTokenController(ControllerInterface):
 
     def handle(self, http_request:HttpRequest) -> HttpResponse:
 
-        token = http_request.headers["Authorization"]
+        token = http_request.headers["Authorization"].replace("Bearer", "").strip()
 
         response = self.__use_case.decode(token).to_dict()
 
