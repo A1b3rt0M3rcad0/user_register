@@ -15,12 +15,17 @@ from src.main.composers.decode_token_composer import decode_token_composer
 
 # Import Validators
 from src.validators.request_validators.create_user_validator_request import create_user_validator
+from src.validators.request_validators.change_username_validator_request import change_username_validator
+from src.validators.authenticated_token_validator import AuthenticatedTokenValidator
 
 # Import error handler
 from src.errors.error_handler import error_handler
 
 # Import Authentication
 from src.main.middlewares.auth_middleware import require_authentication
+
+# Import Erros
+from src.errors.types.http_unauthorized_error import UnauthorizedError
 
 user_routes_bp = Blueprint("user_routes", __name__)
 
@@ -51,6 +56,8 @@ def login_user() -> any:
 @require_authentication
 def change_username() -> any:
     try:
+        AuthenticatedTokenValidator.valid(request)
+        change_username_validator(request)
         http_response = request_adapter(request, change_username_composer())
         return jsonify(http_response.body), http_response.status_code
     except Exception as e:
