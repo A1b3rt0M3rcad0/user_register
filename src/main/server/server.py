@@ -9,3 +9,7 @@ class Server:
     @classmethod
     def run(cls, **kwargs) -> None:
         cls.app.run(**kwargs)
+    
+    @classmethod
+    def create_app(cls) -> Flask:
+        return cls.app

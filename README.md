@@ -33,6 +33,22 @@ Antes de rodar a aplicação, é necessário configurar algumas variáveis de am
    AUTH_ALGORITM=HS256
    ```
 
+4. **HOST**  
+   Esta variável define o host de desenvolvimento, por padrão deixe 0.0.0.0.
+
+   Exemplo:
+   ```bash
+   HOST=0.0.0.0
+   ```
+
+5. **PORT**  
+   Esta variável define a porta de sua aplicação de desenvolvimento, por padrão deixe 5000.
+
+   Exemplo:
+   ```bash
+   PORT=5000
+   ```
+
 ### Recomendação sobre o algoritmo de autenticação (AUTH_ALGORITM)
 
 É **fortemente recomendado** que você utilize o algoritmo **HS256** para garantir que a autenticação da API seja segura e funcional. Caso decida utilizar um algoritmo diferente, será necessário ajustar o código da aplicação para suportar o novo algoritmo de criptografia.
@@ -101,6 +117,9 @@ A API oferece os seguintes endpoints para interagir com usuários:
 
 - **POST /user/find_user**  
   Encontra um usuário pelo seu nome de usuário.
+
+- **API COMPLETA: /api/docs**
+  Enconta a documentação da api
 
 ## Testes
 
