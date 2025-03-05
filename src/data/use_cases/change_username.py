@@ -4,6 +4,7 @@ from src.validators.username_equal_validator import UsarnameEqualValidator
 from src.data.interfaces.i_users_repository import IUsersRepository
 from src.domain.dtos.change_username_dto import ChangeUsernameDTO
 from src.errors.types.http_bad_request_error import BadRequestError
+from sqlalchemy.exc import IntegrityError
 
 class ChangeUsername(IChangeUsername):
 
@@ -20,5 +21,7 @@ class ChangeUsername(IChangeUsername):
             }
             self.__user_repository.update(username, update_params)
             return ChangeUsernameDTO(username, new_username)
+        except IntegrityError as e:
+            raise BadRequestError("Username already exists") from e
         except Exception as e:
             raise BadRequestError(f"Error in change username {e}") from e

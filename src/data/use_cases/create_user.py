@@ -5,6 +5,7 @@ from src.data.interfaces.i_users_repository import IUsersRepository
 from src.domain.dtos.create_user_dto import CreateUserDTO
 from src.errors.types.http_bad_request_error import BadRequestError
 from src.domain.security.hash.i_password_hashing import IPasswordHashing
+from sqlalchemy.exc import IntegrityError
 from datetime import datetime, timezone
 
 class CreateUser(ICreateUser):
@@ -19,6 +20,8 @@ class CreateUser(ICreateUser):
         try:
             password = self.__password_hashing.hash(password)
             self.__user_repository.insert(username, password)
+        except IntegrityError as e:
+            raise BadRequestError("Username already exists") from e
         except Exception as e:
             raise BadRequestError(f"Error adding a new user to the database {str(e)}") from e
         created_at = datetime.now(timezone.utc)
