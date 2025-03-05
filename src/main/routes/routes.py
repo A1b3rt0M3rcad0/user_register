@@ -38,7 +38,7 @@ def register_user() -> any:
     
     return jsonify(http_response.body), http_response.status_code
 
-@user_routes_bp.route("/user/login", methods=["GET"])
+@user_routes_bp.route("/user/login", methods=["POST"])
 def login_user() -> any:
     http_response = None
 
@@ -73,7 +73,7 @@ def delete_account() -> any:
         http_response = error_handler(e)
         return jsonify(http_response.body), http_response.status_code
 
-@user_routes_bp.route("/user/find_user", methods=["GET"])
+@user_routes_bp.route("/user/find_user", methods=["POST"])
 @require_authentication
 def find_user() -> any:
     try:

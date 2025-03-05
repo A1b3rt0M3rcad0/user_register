@@ -1,0 +1,215 @@
+openapi: 3.0.0
+info:
+  title: Register User API
+  description: API for user management
+  version: 1.0.0
+paths:
+  /user/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "201":
+          description: User successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: "Users"
+                  attrs:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        example: "new_user"
+                      password:
+                        type: string
+                        example: "securepassword123"
+                      created_at:
+                        type: string
+                        format: date-time
+                        example: "2025-03-05T10:00:00Z"
+        "400":
+          description: Bad request
+
+  /user/login:
+    post:
+      summary: Login a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: The authentication token for the logged-in user
+        "400":
+          description: Bad request
+        "401":
+          description: Invalid credentials
+
+  /user/change_username:
+    post:
+      summary: Change a username from user
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          description: The request must include an Authorization header with a valid token.
+          schema:
+            type: string
+            example: "Bearer <token>"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                new_username:
+                  type: string
+      responses:
+        "200":
+          description: Username successfully changed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: "Users"
+                  attrs:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        example: "old_username"
+                  new_username:
+                    type: string
+                    example: "new_username"
+        "400":
+          description: Bad request
+        "401":
+          description: Invalid credentials or unauthorized request
+
+  /user/delete_account:
+    post:
+      summary: Delete user account
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          description: The request must include an Authorization header with a valid token.
+          schema:
+            type: string
+            example: "Bearer <token>"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: "The username of the account to be deleted."
+      responses:
+        "200":
+          description: User account successfully deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: "Users"
+                  attrs:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        example: "username_to_delete"
+        "401":
+          description: Unauthorized request or invalid token.
+        "400":
+          description: Bad request (e.g., missing username or invalid format).
+
+  /user/find_user:
+    post:
+      summary: Find a user by username
+      parameters:
+        - in: header
+          name: Authorization
+          required: true
+          description: The request must include an Authorization header with a valid token.
+          schema:
+            type: string
+            example: "Bearer <token>"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: "The username of the user to be found."
+      responses:
+        "200":
+          description: User found successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: "Users"
+                  attrs:
+                    type: object
+                    properties:
+                      username:
+                        type: string
+                        example: "username_to_find"
+                      created_at:
+                        type: string
+                        format: date-time
+                        example: "2023-01-01T00:00:00Z"
+        "401":
+          description: Unauthorized request or invalid token.
+        "400":
+          description: Bad request (e.g., missing or invalid username).
+
+
