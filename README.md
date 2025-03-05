@@ -129,6 +129,10 @@ A API oferece os seguintes endpoints para interagir com usuários:
 - **API COMPLETA: /api/docs**
   Enconta a documentação da api
 
+## Docker
+
+   Antes de criar uma imagem e subir um container, certifiquese de passar as váriaveis de ambiente corretamente.
+
 ## Testes
 
 Recomendamos que, ao configurar o projeto e iniciar os testes, você verifique se tudo está funcionando corretamente. Caso algum teste de autenticação falhe, é possível que um dos tokens de teste tenha expirado. Nesses casos, basta gerar um novo token, substituir o antigo e executar os testes novamente para garantir que o sistema esteja funcionando corretamente.
