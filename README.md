@@ -44,7 +44,7 @@ Se você optar por usar um algoritmo diferente, altere a implementação de vali
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/seu-usuario/user-register.git
+   git clone https://github.com/A1b3rt0M3rcad0/user-register.git
    cd user-register
    ```
 
@@ -104,7 +104,7 @@ A API oferece os seguintes endpoints para interagir com usuários:
 
 ## Testes
 
-É recomendado que você adicione testes para garantir que a API funcione conforme esperado. A estrutura de testes pode ser configurada com `pytest` ou outra ferramenta de sua preferência.
+Recomendamos que, ao configurar o projeto e iniciar os testes, você verifique se tudo está funcionando corretamente. Caso algum teste de autenticação falhe, é possível que um dos tokens de teste tenha expirado. Nesses casos, basta gerar um novo token, substituir o antigo e executar os testes novamente para garantir que o sistema esteja funcionando corretamente.
 
 ## Licença
 
