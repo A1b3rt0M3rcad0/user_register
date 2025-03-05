@@ -78,7 +78,7 @@ Se você optar por usar um algoritmo diferente, altere a implementação de vali
    Após configurar as variáveis de ambiente, você pode rodar a aplicação com o seguinte comando:
 
    ```bash
-   python app.py
+   python run.py
    ```
 
    A aplicação estará rodando no endereço `http://localhost:5000`.
