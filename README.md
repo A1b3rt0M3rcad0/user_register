@@ -68,9 +68,9 @@ Se você optar por usar um algoritmo diferente, altere a implementação de vali
      Exemplo de `.env`:
 
      ```bash
-     MYSQL_STRING_CONNECTION=mysql+pymysql://root:losttvttoovx@localhost:3306/register
-     AUTH_SECRET_KEY=_p1*^*2zy4js)_4lz7^9cckyc!@=7bh=3zdgqp8)g2^td0csde
-     AUTH_ALGORITM=HS256
+     MYSQL_STRING_CONNECTION= Adicione aqui sua string de conexão
+     AUTH_SECRET_KEY= Adicione Aqui sua chave secreta
+     AUTH_ALGORITM= HS256
      ```
 
 5. **Rodando a aplicação:**
