@@ -44,7 +44,7 @@ Se você optar por usar um algoritmo diferente, altere a implementação de vali
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/A1b3rt0M3rcad0/user-register.git
+   git clone https://github.com/A1b3rt0M3rcad0/user_register.git
    cd user-register
    ```
 
