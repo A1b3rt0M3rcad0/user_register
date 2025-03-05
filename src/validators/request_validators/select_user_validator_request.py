@@ -7,7 +7,7 @@ def select_user_validator(request:any) -> None:
         "username": {"type": "string", "required": True, "empty": False}
     })
 
-    response = query_validator.validate(request.args)
+    response = query_validator.validate(request.json)
 
     if response is False:
         raise HttpUnprocessableEntityError(query_validator.errors)

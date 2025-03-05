@@ -16,6 +16,6 @@ class CreateUserController(ControllerInterface):
         response = self.__use_case.create(username, password).to_dict()
 
         return HttpResponse(
-            status_code=200,
+            status_code=201,
             body = response
         )
