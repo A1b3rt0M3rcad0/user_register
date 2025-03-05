@@ -89,15 +89,23 @@ Se você optar por usar um algoritmo diferente, altere a implementação de vali
      AUTH_ALGORITM= HS256
      ```
 
-5. **Rodando a aplicação:**
+5. **Rodando a aplicação de desenvolvimento:**
 
    Após configurar as variáveis de ambiente, você pode rodar a aplicação com o seguinte comando:
 
    ```bash
-   python run.py
+   python run_dev.py
    ```
 
    A aplicação estará rodando no endereço `http://localhost:5000`.
+
+6. **Rodando a aplicação com gunicorn: (Pode ter problemas no Windown)**
+
+   Após configurar as váriaveis de ambiente, você pode rodar a aplicação com o seguinte comando:
+
+   ```bash
+   gunicorn -b 0.0.0.0:5000 run.app
+   ```
 
 ## Endpoints da API
 
