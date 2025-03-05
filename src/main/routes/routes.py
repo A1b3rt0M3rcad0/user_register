@@ -5,13 +5,11 @@ from flask import Blueprint, request, jsonify
 from src.main.adapters.request_adapter import request_adapter
 
 # Import composers
-from src.main.composers.authenticate_token_composer import authenticate_token_composer
 from src.main.composers.change_username_composer import change_username_composer
 from src.main.composers.create_user_composer import create_user_composer
 from src.main.composers.delete_user_composer import delete_user_composer
 from src.main.composers.login_case_composer import login_case_composer
 from src.main.composers.select_composer import select_user_composer
-from src.main.composers.decode_token_composer import decode_token_composer
 
 # Import Validators
 from src.validators.request_validators.create_user_validator_request import create_user_validator
@@ -23,9 +21,6 @@ from src.errors.error_handler import error_handler
 
 # Import Authentication
 from src.main.middlewares.auth_middleware import require_authentication
-
-# Import Erros
-from src.errors.types.http_unauthorized_error import UnauthorizedError
 
 user_routes_bp = Blueprint("user_routes", __name__)
 
