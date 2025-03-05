@@ -1,3 +1,5 @@
+from src.log.loggers.info_logger import InfoLogger
+from src.log.loggers.error_logger import ErrorLogger
 from src.domain.dtos.login_case_dto import LoginDTO
 from src.domain.use_cases.i_login_case import ILoginCase
 from src.data.interfaces.i_users_repository import IUsersRepository
@@ -23,14 +25,18 @@ class LoginCase(ILoginCase):
         try:
             users = self.__user_repository.select(username)
             user = users[0]
+            InfoLogger.log(f"{user} login")
         except IndexError as e:
+            ErrorLogger.log(f"LoginCase: {username} User does not exists")
             raise BadRequestError("User does not exists") from e
         except Exception as e:
+            ErrorLogger.log(f"LoginCase: Unexpected error occurred during login: {str(e)}")
             raise RuntimeError(f"Unexpected error occurred during login: {str(e)}") from e
         
         database_password = user.password
 
         if not self.__password_hash_checker.check(password, database_password):
+            ErrorLogger.log("LoginCase: Invalid Password")
             raise BadRequestError("Invalid Password")
         
         params = {

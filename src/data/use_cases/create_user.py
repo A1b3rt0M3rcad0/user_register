@@ -1,3 +1,5 @@
+from src.log.loggers.info_logger import InfoLogger
+from src.log.loggers.error_logger import ErrorLogger
 from src.validators.username_validator import UsernameValidator
 from src.validators.password_validator import PasswordValidator
 from src.domain.use_cases.i_create_user import ICreateUser
@@ -20,9 +22,12 @@ class CreateUser(ICreateUser):
         try:
             password = self.__password_hashing.hash(password)
             self.__user_repository.insert(username, password)
+            InfoLogger.log(f"{username} created")
         except IntegrityError as e:
+            ErrorLogger.log("CreateUser: Username already exists")
             raise BadRequestError("Username already exists") from e
         except Exception as e:
+            ErrorLogger.log(f"CreateUser: Error adding a new user to the database {str(e)}")
             raise BadRequestError(f"Error adding a new user to the database {str(e)}") from e
         created_at = datetime.now(timezone.utc)
         return CreateUserDTO(username, password, created_at)

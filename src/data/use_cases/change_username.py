@@ -1,3 +1,5 @@
+from src.log.loggers.info_logger import InfoLogger
+from src.log.loggers.error_logger import ErrorLogger
 from src.domain.use_cases.i_change_username import IChangeUsername
 from src.validators.username_validator import UsernameValidator
 from src.validators.username_equal_validator import UsarnameEqualValidator
@@ -20,8 +22,11 @@ class ChangeUsername(IChangeUsername):
                 "username": new_username
             }
             self.__user_repository.update(username, update_params)
+            InfoLogger.log(f"ChangeUsername: {username} changed to {new_username}")
             return ChangeUsernameDTO(username, new_username)
         except IntegrityError as e:
+            ErrorLogger.log("ChangeUsername: Username already exists")
             raise BadRequestError("Username already exists") from e
         except Exception as e:
+            ErrorLogger.log(f"ChangeUsername: Error in change username {str(e)}")
             raise BadRequestError(f"Error in change username {e}") from e
