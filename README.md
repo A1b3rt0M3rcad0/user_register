@@ -14,7 +14,7 @@ Antes de rodar a aplicação, é necessário configurar algumas variáveis de am
 
    Exemplo:
    ```bash
-   MYSQL_STRING_CONNECTION=mysql+pymysql://root:losttvttoovx@localhost:3306/register
+   MYSQL_STRING_CONNECTION= Sua string de conexão
    ```
 
 2. **AUTH_SECRET_KEY**  
@@ -22,7 +22,7 @@ Antes de rodar a aplicação, é necessário configurar algumas variáveis de am
 
    Exemplo:
    ```bash
-   AUTH_SECRET_KEY=_p1*^*2zy4js)_4lz7^9cckyc!@=7bh=3zdgqp8)g2^td0csde
+   AUTH_SECRET_KEY= Sua chave secreta
    ```
 
 3. **AUTH_ALGORITM**  
