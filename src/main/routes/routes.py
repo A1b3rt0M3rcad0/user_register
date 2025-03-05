@@ -28,8 +28,6 @@ user_routes_bp = Blueprint("user_routes", __name__)
 
 @user_routes_bp.route("/user/register", methods=["POST"])
 def register_user() -> any:
-    http_response = None
-
     try:
         create_user_validator(request)
         http_response = request_adapter(request, create_user_composer())
@@ -40,8 +38,6 @@ def register_user() -> any:
 
 @user_routes_bp.route("/user/login", methods=["POST"])
 def login_user() -> any:
-    http_response = None
-
     try:
         http_response = request_adapter(request, login_case_composer())
     except Exception as e:
